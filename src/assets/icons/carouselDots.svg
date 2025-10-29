@@ -1,0 +1,5 @@
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="6" cy="22" r="6" transform="rotate(180 6 22)" fill="#202020"/>
+<circle opacity="0.8" cx="22" cy="22" r="6" transform="rotate(180 22 22)" fill="#202020"/>
+<circle opacity="0.6" cx="6" cy="6" r="6" transform="rotate(180 6 6)" fill="#202020"/>
+</svg>
