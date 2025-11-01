@@ -1,11 +1,15 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logoIcon from "@/assets/icons/FooterIcon.svg"; // غيّر المسار حسب مكان اللوجو
+import logoIcon from "@/assets/icons/FooterIcon.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import ComingSoonModal from "@/components/ui/ComingSoonModal";
 
 export default function Footer() {
+  const [showModal, setShowModal] = useState(false);
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -51,35 +55,35 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-gray-100">
               <li>
-                <Link href="#">About Us</Link>
+                <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
               </li>
               <li>
-                <Link href="#">Products</Link>
+                <Link href="/products" className="hover:text-white transition-colors">Products</Link>
               </li>
               <li>
-                <Link href="#">Services</Link>
+                <Link href="/services" className="hover:text-white transition-colors">Services</Link>
               </li>
               <li>
-                <Link href="#">Blog & News</Link>
+                <Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link>
               </li>
             </ul>
           </div>
 
           {/* Resources Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
+            <h3 className="text-lg font-semibold mb-4">Support</h3>
             <ul className="space-y-2 text-gray-100">
               <li>
-                <Link href="#">Educational</Link>
+                <Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link>
               </li>
               <li>
-                <Link href="#">Mental Health Resources</Link>
+                <Link href="/cart" className="hover:text-white transition-colors">Shopping Cart</Link>
               </li>
               <li>
-                <Link href="#">Nutrition</Link>
+                <Link href="/products" className="hover:text-white transition-colors">Browse Products</Link>
               </li>
               <li>
-                <Link href="#">Medication Guides</Link>
+                <Link href="/pricing" className="hover:text-white transition-colors">FAQ</Link>
               </li>
             </ul>
           </div>
@@ -98,13 +102,13 @@ export default function Footer() {
                 "Twitter",
                 "Tik Tok",
               ].map((item) => (
-                <Link
+                <button
                   key={item}
-                  href="#"
+                  onClick={() => setShowModal(true)}
                   className="bg-[#222] hover:bg-[#333] px-4 py-2 rounded-full text-sm transition"
                 >
                   {item}
-                </Link>
+                </button>
               ))}
             </div>
           </div>
@@ -119,12 +123,17 @@ export default function Footer() {
             <span className="text-white font-medium">TokoTema</span>
           </p>
           <div className="flex items-center gap-4">
-            <Link href="#">Terms of Use</Link>
+            <button onClick={() => setShowModal(true)} className="hover:text-white transition-colors">
+              Terms of Use
+            </button>
             <span>|</span>
-            <Link href="#">Privacy Policy</Link>
+            <button onClick={() => setShowModal(true)} className="hover:text-white transition-colors">
+              Privacy Policy
+            </button>
           </div>
         </div>
       </div>
+      <ComingSoonModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </footer>
   );
 }

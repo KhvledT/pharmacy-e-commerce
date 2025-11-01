@@ -2,47 +2,11 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import ProductCard from '../other/productCard';
-import popularProductsImage1 from '@/assets/imgs/landingPage/popularProducts1.png';
-import popularProductsImage2 from '@/assets/imgs/landingPage/popularProducts2.png';
-import popularProductsImage3 from '@/assets/imgs/landingPage/popularProducts3.png';
-import popularProductsImage4 from '@/assets/imgs/landingPage/popularProducts4.png';
-
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-}
+import { products } from '@/data/products';
 
 const PopularProducts = () => {
-  // Sample products data - replace with your actual data
-  const products: Product[] = [
-    {
-      id: 1,
-      name: 'Oxygen Mask',
-      price: 2.00,
-      image: popularProductsImage1.src,
-    },
-    {
-      id: 2,
-      name: 'Surgical Gloves',
-      price: 1.99,
-      image: popularProductsImage2.src,
-    },
-    {
-      id: 3,
-      name: 'Medical Mask',
-      price: 0.89,
-      image: popularProductsImage3.src,
-    },
-    {
-      id: 4,
-      name: 'Hand Sanitizer',
-      price: 4.00,
-      image: popularProductsImage4.src,
-    },
-  ];
+  // Get popular products
+  const popularProducts = products.slice(12, 16);
 
   return (
     <section className="w-full px-4 py-8 md:py-12 lg:py-16">
@@ -63,10 +27,8 @@ const PopularProducts = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {products.map((product) => (
-            <div key={product.id} className='space-x-5'>
-                <ProductCard image={product.image} title={product.name} price={product.price} />
-            </div>
+          {popularProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>

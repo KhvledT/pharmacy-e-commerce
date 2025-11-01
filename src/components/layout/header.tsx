@@ -7,30 +7,30 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import menuIcon from "@/assets/SVG/layout/menu.svg";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import CartIcon from "@/components/layout/CartIcon";
+import ComingSoonModal from "@/components/ui/ComingSoonModal";
 
 export default function PharmacyNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const menuItems = [
     { name: "Home", href: "/" },
-    // in future we will add the pages here
-    { name: "About Us", href: "/" },
+    { name: "About Us", href: "/about" },
     { name: "Products", href: "/products" },
-    { name: "Services", href: "/" },
-    { name: "Pricing", href: "/" },
-    { name: "Contact Us", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "Pricing", href: "/pricing" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   // active page
   const activePage = usePathname();
   const activePageName = menuItems.find(item => item.href === activePage)?.name;
 
-
-
-
-  // ✅ detect scroll position
+  // detect scroll position
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 300) setIsScrolled(true);
@@ -41,7 +41,7 @@ export default function PharmacyNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ close menu on outside click
+  // close menu on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -60,7 +60,10 @@ export default function PharmacyNavbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo Section */}
-        <div className="flex items-center gap-3">
+        <div 
+        className="flex items-center gap-3 cursor-pointer"
+        onClick={() => router.push("/")}
+        >
           <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center">
             <Image src={headerLogo} alt="headerLogo" width={25} height={25} />
           </div>
@@ -83,25 +86,25 @@ export default function PharmacyNavbar() {
           )}
         </ul>
 
-        {/* Sign Up Button (Desktop) */}
-        <div className="hidden lg:block">
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors inline-flex items-center gap-3 whitespace-nowrap">
-            sign up
-            <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
-          </button>
+        {/* Cart Icon & Sign Up Button (Desktop) */}
+        <div className="hidden lg:flex items-center gap-4 pr-5 lg:pr-0">
+          <CartIcon />
         </div>
 
-        {/* Mobile Toggle Button */}
-        <button
-          className="lg:hidden text-blue-700"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <Image src={menuIcon} alt="menu icon" width={24} height={24} />
-        </button>
+        {/* Mobile Cart & Toggle Button */}
+        <div className="lg:hidden flex items-center gap-3">
+          <CartIcon />
+          <button
+            className="text-blue-700"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <Image src={menuIcon} alt="menu icon" width={24} height={24} />
+          </button>
+        </div>
       </div>
 
-      {/* ✅ Animated Mobile Menu Overlay */}
+      {/* Animated Mobile Menu Overlay */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -126,22 +129,26 @@ export default function PharmacyNavbar() {
               </div>
 
               <ul className="flex flex-col gap-5 text-gray-700 text-lg">
-                {["Home", "About Us", "Products", "Services", "Pricing", "Contact Us"].map(
-                  (item) => (
-                    <li key={item}>
-                      <a
-                        href={`#${item.toLowerCase().replace(" ", "")}`}
-                        onClick={() => setMenuOpen(false)}
-                        className="hover:text-blue-600 transition-colors font-medium"
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  )
-                )}
+                {menuItems.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="hover:text-blue-600 transition-colors font-medium"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
 
-              <button className="mt-auto bg-blue-600 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-3">
+              <button 
+                onClick={() => {
+                  setMenuOpen(false);
+                  setShowModal(true);
+                }}
+                className="mt-auto bg-blue-600 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-3"
+              >
                 sign up
                 <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
               </button>
@@ -149,6 +156,7 @@ export default function PharmacyNavbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      <ComingSoonModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </nav>
   );
 }

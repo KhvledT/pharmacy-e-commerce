@@ -1,13 +1,19 @@
+import dynamic from 'next/dynamic';
 import Hero from "@/components/landingPage/hero";
 import PharmacyFeatures from "@/components/landingPage/PharmacyFeatures";
-import PharmacyBanner from "@/components/landingPage/banner"; 
-import NewProducts from "@/components/landingPage/newProducts";
-import WhyUs from "@/components/landingPage/whyUs";
-import ServicesSection from "@/components/landingPage/services";
-import PopularProducts from "@/components/landingPage/popularProducts";
-import Team from "@/components/landingPage/team";
-import CarouselSection from "@/components/landingPage/carouselSection";
-import Facts from "@/components/landingPage/factsSection";
+
+// Lazy load below-the-fold components
+const PharmacyBanner = dynamic(() => import("@/components/landingPage/banner"), {
+  loading: () => <div className="h-96 bg-gray-100 animate-pulse" />
+});
+const NewProducts = dynamic(() => import("@/components/landingPage/newProducts"));
+const WhyUs = dynamic(() => import("@/components/landingPage/whyUs"));
+const ServicesSection = dynamic(() => import("@/components/landingPage/services"));
+const PopularProducts = dynamic(() => import("@/components/landingPage/popularProducts"));
+const Team = dynamic(() => import("@/components/landingPage/team"));
+const CarouselSection = dynamic(() => import("@/components/landingPage/carouselSection"));
+const Facts = dynamic(() => import("@/components/landingPage/factsSection"));
+
 export default function Home() {
   return (
     <>

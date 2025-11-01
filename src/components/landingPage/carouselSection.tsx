@@ -1,6 +1,6 @@
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import carosel1 from '@/assets/imgs/landingPage/carousel1.png';
 import carouselDots from '@/assets/icons/carouselDots.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +10,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
+import ComingSoonModal from '@/components/ui/ComingSoonModal';
 
 interface Testimonial {
   id: number;
@@ -20,15 +21,60 @@ interface Testimonial {
 }
 
 const CarouselSection = () => {
+  const [showModal, setShowModal] = useState(false);
+  
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      quote: "Pharmacy Store is my go-to for over-the-counter medications and health products. They have a wide selection, and their website makes it easy to order online. The only improvement I'd suggest is expanding their beauty and skincare section.",
-      name: 'Theresa J. Jones',
-      age: '24 years old',
+      quote:
+        "Pharmacy Store is my go-to for over-the-counter medications and health products. They have a wide selection, and their website makes it easy to order online. The only improvement I'd suggest is expanding their beauty and skincare section.",
+      name: "Thomas J. Miller",
+      age: "27 years old",
+      image: carosel1.src,
+    },
+    {
+      id: 2,
+      quote:
+        "I’ve been ordering vitamins and supplements from Pharmacy Store for months now, and I’m always impressed by how fast they deliver. Great service and trustworthy products!",
+      name: "Michael R. Carter",
+      age: "31 years old",
+      image: carosel1.src,
+    },
+    {
+      id: 3,
+      quote:
+        "Customer support was really helpful when I had questions about a prescription refill. The process was simple and smooth. Definitely recommend their service!",
+      name: "David K. Anderson",
+      age: "29 years old",
+      image: carosel1.src,
+    },
+    {
+      id: 4,
+      quote:
+        "I found everything I needed for my family’s care at Pharmacy Store. Prices are fair and the quality is top-notch. Would love to see more organic options though!",
+      name: "James L. Roberts",
+      age: "33 years old",
+      image: carosel1.src,
+    },
+    {
+      id: 5,
+      quote:
+        "I love how user-friendly their website is. It’s easy to find what I’m looking for, and checkout takes just seconds. A great experience overall!",
+      name: "Daniel P. Wilson",
+      age: "35 years old",
+      image: carosel1.src,
+    },
+    {
+      id: 6,
+      quote:
+        "This is by far the best online pharmacy I’ve used. Everything arrives on time, well-packaged, and at good prices. Keep up the great work!",
+      name: "Robert T. Collins",
+      age: "30 years old",
       image: carosel1.src,
     },
   ];
+  
+  
 
   return (
     <section className="w-full px-4 py-12 md:py-16 lg:py-20 bg-gray-50">
@@ -36,14 +82,14 @@ const CarouselSection = () => {
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] items-start gap-6 md:gap-10 mb-12 md:mb-16">
           {/* Left Column - Label */}
-          <div className="flex justify-start">
+          <div className="flex justify-start pl-5">
             <p className="text-pink-600 font-semibold text-base md:text-lg whitespace-nowrap pt-8">
               Review
             </p>
           </div>
 
           {/* Right Column - Heading + Text + Button */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div className="flex flex-row lg:items-center lg:justify-between gap-6 px-5">
             <div className="flex-1">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
                 Testimonials That<br />Inspire Us
@@ -55,12 +101,12 @@ const CarouselSection = () => {
 
             {/* All Review Button */}
             <div className="lg:shrink-0 lg:pt-4">
-              <Link
-                href="/services"
+              <button
+                onClick={() => setShowModal(true)}
                 className="inline-flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full border-2 border-[#EDEDED] hover:text-white hover:bg-[#1053D4] hover:border-[#062a6e] hover:shadow-2xl transition-all duration-300 font-medium text-base md:text-lg"
               >
                 All Review
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -131,6 +177,7 @@ const CarouselSection = () => {
           </Carousel>
         </div>
       </div>
+      <ComingSoonModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </section>
   );
 };

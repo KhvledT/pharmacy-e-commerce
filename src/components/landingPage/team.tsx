@@ -48,14 +48,14 @@ const Team = () => {
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] items-start gap-6 md:gap-10 mb-12 md:mb-16">
           {/* Left Column - Label */}
-          <div className="flex justify-start">
+          <div className="flex justify-start pl-5">
             <p className="text-pink-600 font-semibold text-base md:text-lg whitespace-nowrap pt-6">
               Team
             </p>
           </div>
 
           {/* Right Column - Heading + Text + Button */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div className="flex flex-row lg:items-center lg:justify-between gap-6 px-5">
             <div className="flex-1">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
                 The Heart of Our <br /> Pharmacy
