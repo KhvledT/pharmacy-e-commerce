@@ -1,16 +1,16 @@
 "use client";
-import React, { useState } from 'react';
-import Image from 'next/image';
-import carosel1 from '@/assets/imgs/landingPage/carousel1.png';
-import carouselDots from '@/assets/icons/carouselDots.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import Image from "next/image";
+import carosel1 from "@/assets/imgs/landingPage/carousel1.png";
+import carouselDots from "@/assets/icons/carouselDots.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from '@/components/ui/carousel';
-import ComingSoonModal from '@/components/ui/ComingSoonModal';
+} from "@/components/ui/carousel";
+import ComingSoonModal from "@/components/ui/ComingSoonModal";
 
 interface Testimonial {
   id: number;
@@ -22,7 +22,7 @@ interface Testimonial {
 
 const CarouselSection = () => {
   const [showModal, setShowModal] = useState(false);
-  
+
   const testimonials: Testimonial[] = [
     {
       id: 1,
@@ -73,8 +73,6 @@ const CarouselSection = () => {
       image: carosel1.src,
     },
   ];
-  
-  
 
   return (
     <section className="w-full px-4 py-12 md:py-16 lg:py-20 bg-gray-50">
@@ -91,8 +89,10 @@ const CarouselSection = () => {
           {/* Right Column - Heading + Text + Button */}
           <div className="flex flex-row lg:items-center lg:justify-between gap-6 px-5">
             <div className="flex-1">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
-                Testimonials That<br />Inspire Us
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                Testimonials That
+                <br />
+                Inspire Us
               </h2>
               <p className="text-gray-600 text-base md:text-lg">
                 Real stories from people we've had the honor to serve
@@ -103,7 +103,7 @@ const CarouselSection = () => {
             <div className="lg:shrink-0 lg:pt-4">
               <button
                 onClick={() => setShowModal(true)}
-                className="inline-flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full border-2 border-[#EDEDED] hover:text-white hover:bg-[#1053D4] hover:border-[#062a6e] hover:shadow-2xl transition-all duration-300 font-medium text-base md:text-lg"
+                className="inline-flex items-center justify-center w-30 h-30 sm:w-35 sm:h-35 md:w-48 md:h-48 rounded-full border-2 border-[#EDEDED] hover:text-white hover:bg-[#1053D4] hover:border-[#062a6e] hover:shadow-2xl transition-all duration-300 font-medium text-xs sm:text-base md:text-lg"
               >
                 All Review
               </button>
@@ -112,20 +112,17 @@ const CarouselSection = () => {
         </div>
 
         {/* Testimonials Carousel */}
-        <div className="relative lg:pl-[10%]">
+        <div className="relative lg:pl-[10%] pl-5">
           <Carousel
             opts={{
-              align: 'start',
+              align: "start",
               loop: true,
             }}
-            className="w-full"
+            className="w-full "
           >
             <CarouselContent className="-ml-4">
               {testimonials.map((testimonial) => (
-                <CarouselItem
-                  key={testimonial.id}
-                  className="pl-4 md:basis-1/2 lg:basis-full"
-                >
+                <CarouselItem key={testimonial.id} className="pl-4 basis-full">
                   <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
                     {/* Left Side - Avatar */}
                     <div className="shrink-0">
@@ -141,36 +138,35 @@ const CarouselSection = () => {
                     </div>
 
                     {/* Right Side - Quote and Info */}
-                    <div className="flex-1 max-w-3xl">
-                      {/* Quote Icon */}
-                      <div className="mb-6">
+                    {/* Quote Icon */}
+                    <div className="flex flex-row gap-4 lg:flex-col">
                         <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-blue-600 flex items-center justify-center">
                           <FontAwesomeIcon
                             icon={faQuoteLeft}
                             className="w-5 h-5 md:w-6 md:h-6 text-blue-600"
                           />
-                        </div>
                       </div>
+                      <div className="flex-1 max-w-3x">
+                        {/* Quote Text */}
+                        <blockquote className="text-lg md:text-xl lg:text-2xl italic leading-[2] mb-10 max-w-[85%]">
+                          "{testimonial.quote}"
+                        </blockquote>
 
-                      {/* Quote Text */}
-                      <blockquote className="text-lg md:text-xl lg:text-2xl italic leading-[2] mb-10 max-w-[85%]">
-                        "{testimonial.quote}"
-                      </blockquote>
-
-                      {/* Author Info */}
-                      <div>
-                        <p className="text-lg md:text-xl font-bold text-gray-900 mb-1">
-                          {testimonial.name}
-                        </p>
-                        <p className="text-base md:text-lg text-gray-600">
-                          {testimonial.age}
-                        </p>
+                        {/* Author Info */}
+                        <div>
+                          <p className="text-lg md:text-xl font-bold text-gray-900 mb-1">
+                            {testimonial.name}
+                          </p>
+                          <p className="text-base md:text-lg text-gray-600">
+                            {testimonial.age}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                    <div>
-                        <Image src={carouselDots} alt='dots'/>
-                    </div>
+                  <div className="pt-5 pl-1">
+                    <Image src={carouselDots} alt="dots" />
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>

@@ -49,7 +49,7 @@ const ServicesSection = () => {
           {/* Right Large Column - Heading + Text + Button */}
           <div className="flex flex-row lg:items-center lg:justify-between gap-6 px-5">
             <div className="flex-1">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
                 Comprehensive <br /> Pharmacy Services
               </h2>
               <p className="text-blue-100 text-base md:text-lg max-w-xl">
@@ -61,7 +61,7 @@ const ServicesSection = () => {
             <div className="lg:shrink-0">
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full border-2 border-white text-white hover:bg-white hover:text-blue-600 transition-all duration-300 font-medium text-base md:text-lg"
+                className="inline-flex items-center justify-center w-30 h-30 sm:w-35 sm:h-35 md:w-48 md:h-48 rounded-full border-2 border-white text-white hover:bg-white hover:text-blue-600 transition-all duration-300 font-medium text-xs sm:text-base md:text-lg"
               >
                 All Services
               </Link>

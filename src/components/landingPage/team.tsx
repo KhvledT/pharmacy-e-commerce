@@ -57,7 +57,7 @@ const Team = () => {
           {/* Right Column - Heading + Text + Button */}
           <div className="flex flex-row lg:items-center lg:justify-between gap-6 px-5">
             <div className="flex-1">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
                 The Heart of Our <br /> Pharmacy
               </h2>
               <p className="text-gray-600 text-base md:text-lg">
@@ -69,7 +69,7 @@ const Team = () => {
             <div className="lg:shrink-0">
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full border-2 border-[#EDEDED] hover:text-white hover:bg-[#1053D4] hover:border-[#062a6e] hover:shadow-2xl transition-all duration-300 font-medium text-base md:text-lg"
+                className="inline-flex items-center justify-center w-30 h-30 sm:w-35 sm:h-35 md:w-48 md:h-48 rounded-full border-2 border-[#EDEDED] hover:text-white hover:bg-[#1053D4] hover:border-[#062a6e] hover:shadow-2xl transition-all duration-300 font-medium text-xs sm:text-base md:text-lg"
               >
                 All Services
               </Link>
