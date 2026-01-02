@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import carosel1 from "@/assets/imgs/landingPage/carousel1.png";
+import carosel1 from "@/assets/imgs/landingPage/carousel1.jpg";
 import carouselDots from "@/assets/icons/carouselDots.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";

@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import whyUsImage from '@/assets/imgs/landingPage/doctorImage.png';
+import whyUsImage from '@/assets/imgs/landingPage/doctorImage.jpg';
 import whyUsIcon1 from '@/assets/icons/whyUs1.svg';
 import whyUsIcon2 from '@/assets/icons/whyUs2.svg';
 
